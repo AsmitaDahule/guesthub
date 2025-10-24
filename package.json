@@ -1,6 +1,7 @@
 {
   "name": "guesthub",
   "version": "1.0.0",
+  "type": "commonjs",
   "description": "A full-stack Airbnb-style platform for booking and hosting stays, built with modern web technologies.",
   "main": "app.js",
   "scripts": {
@@ -22,6 +23,7 @@
     "ejs": "^3.1.10",
     "ejs-mate": "^4.0.0",
     "express": "^5.1.0",
+    "joi": "^18.0.1",
     "method-override": "^3.0.0",
     "mongoose": "^8.19.2",
     "path": "^0.12.7"
