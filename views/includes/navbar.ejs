@@ -1,20 +1,42 @@
-<nav class="navbar navbar-expand-md bg-body-white border-bottom sticky-top">
+<nav class="navbar navbar-expand-md bg-white border-bottom sticky-top">
   <div class="container-fluid">
     <a class="navbar-brand" href="/"><i class="fa-solid fa-compass"></i></a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+
+    <!-- Navbar toggler button -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+
+    <!-- Navbar content -->
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
+      <ul class="navbar-nav me-auto">
         <li class="nav-item">
           <a class="nav-link" aria-current="page" href="/">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/listings">All listings</a>
+          <a class="nav-link" href="/listings">All Listings</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/listings/new">Add new listing</a>
+          <a class="nav-link" href="/listings/new">Add New Listing</a>
         </li>
+      </ul>
+
+      <!-- Right-side links -->
+      <ul class="navbar-nav">
+        <% if(!currUser) { %>
+          <li class="nav-item">
+          <a class="nav-link" href="/signup">Sign Up</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/login">Login</a>
+        </li>
+        <% } %>
+       <% if(currUser) { %>
+         <li class="nav-item">
+          <a class="nav-link" href="/logout">Logout</a>
+        </li>
+       <% } %>
       </ul>
     </div>
   </div>
