@@ -1,3 +1,7 @@
+if(process.env.NODE_ENV != "production") {
+  require("dotenv").config();
+}
+
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
@@ -16,7 +20,7 @@ const listingRouter = require("./routes/listing.js");
 const reviewRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
 
-const MONGO_URL = "mongodb://localhost:27017/guestHub"
+
 
 main().then(() => {
   console.log("connected to db");
@@ -25,7 +29,7 @@ main().then(() => {
 })
 
 async function main() {
-  await mongoose.connect(MONGO_URL);
+  await mongoose.connect(process.env.MONGO_URL);
 }
 
 
@@ -37,7 +41,7 @@ app.engine('ejs', ejsMate);
 app.use(express.static(path.join(__dirname, "/public")));
 
 
-let PORT = 8080;
+
 
 const sessionOptions = {
   secret: "mysupersecrete",
@@ -53,6 +57,12 @@ const sessionOptions = {
 
 app.get("/", (req, res) => {
   res.send("hi, i am from root")
+});
+
+
+// map 
+app.get("/map", (req, res) => {
+  res.render("map");  // renders map.ejs
 });
 
 
@@ -94,6 +104,6 @@ app.use((err, req, res, next) => {
 });
 
 
-app.listen(PORT, () => {
-  console.log(`Server is starting to port ${PORT}`);
+app.listen(process.env.PORT, () => {
+  console.log(`Server is starting to port ${process.env.PORT}`);
 });
