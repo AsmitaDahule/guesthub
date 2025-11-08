@@ -1,3 +1,8 @@
+/* --- Root & Global --- */
+:root {
+  --primary-color: #FF385C;
+}
+
 body {
   font-family: "Poppins", sans-serif !important;
   display: flex;
@@ -9,13 +14,14 @@ body {
   flex: 1;
 }
 
+/* --- Navbar & Glass Buttons --- */
 .navbar {
-  height: 5rem;
+  height: 4rem;
   background-color: white;
 }
 
 .fa-compass {
-  color: #fe424d;
+  color: var(--primary-color); /* Use variable */
   font-size: 2rem;
 }
 
@@ -23,41 +29,71 @@ body {
   color: #222222 !important;
 }
 
-.f-info-links, .f-info-socials, .f-info-brand {
-  width: 100%;
-  vertical-align: middle;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.navbar-brand-custom {
+  color: var(--primary-color) !important;
+  font-size: 1.6rem !important;
+  font-weight: 700;
 }
 
-.f-info-socials {
-  margin-right: 1rem;
-  font-size: 1.2rem;
+/* --- Nav Link Styling & Smooth Shadow Hover --- */
+.nav-link-custom {
+  position: relative;
+  font-weight: 500;
+  color: #222222 !important;
+  padding: 0.5rem 1rem !important;
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
 }
 
-.f-info-links a{
+.nav-link-custom:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+/* 3. Style the auth links */
+.navbar-nav .nav-link.fw-semibold {
+  transition: color 0.2s ease;
+}
+
+.navbar-nav .nav-link.fw-semibold:hover {
+  color: var(--primary-color) !important;
+}
+
+.btn-glass {
+  display: block;
+  padding: 0.5rem 1rem;
   text-decoration: none;
-  color: #222222;
+  font-weight: 600;
+  color: #333;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
 }
 
-.f-info-links a:hover{
-  text-decoration: underline;
+.btn-glass:hover {
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+  color: #000;
 }
 
-
-.f-info {
-  height: 8rem;
-  background-color: #ebebeb;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: space-evenly;
-  text-align: center;
+.btn-glass-primary {
+  background: hsla(348, 100%, 61%, 0.1);
+  color: var(--primary-color);
+  font-weight: 700;
 }
 
-/* cards */
+.btn-glass-primary:hover {
+  background: hsla(348, 100%, 61%, 0.2);
+  color: var(--primary-color);
+  transform: translateY(-2px);
+}
 
+/* --- Listing Cards --- */
 .listing-card {
   border: none !important;
   margin-bottom: 2rem;
@@ -67,7 +103,13 @@ body {
 .card-img-top {
   border-radius: 1rem !important;
   width: 100% !important;
+  height: 20rem;
   object-fit: cover;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.card-img-top:hover {
+  opacity: 0.8;
 }
 
 .card-body {
@@ -82,41 +124,176 @@ body {
   text-decoration: none;
 }
 
-
-/* card effect */
-.card-img-top {
-  height: 20rem;
-  object-fit: cover;
-  
-  /* Animate the opacity (transparency) */
-  transition: opacity 0.3s ease-in-out;
+/* --- Show Page --- */
+.show-card {
+  padding-left: 0;
+  padding-right: 0;
 }
 
-.card-img-top:hover {
-  opacity: 0.8;
-}
-
-.add-btn {
-  background-color: #fe424d !important;
-  border: none !important;
-}
-
-.edit-btn {
-  background-color: #fe424d !important;
-  border: none !important;
-}
-
-
-/* show page */
 .show-img {
-  height: 30vh;
+  max-height: 50vh;
+  object-fit: cover;
 }
 
 .btns {
   display: flex;
 }
 
-.show-card {
+.listing-owner {
+  font-size: 0.9rem;
+  color: #717171;
+}
+
+.listing-description {
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+.list-group-item {
+  border: none;
   padding-left: 0;
-  padding-right: 0;
+}
+
+.listing-price {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #222;
+}
+
+/* --- Custom Buttons --- */
+.add-btn,
+.edit-btn {
+  background-color: var(--primary-color) !important;
+  border: none !important;
+}
+
+.btn-custom-primary {
+  background-color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+  color: white !important;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  transition: all 0.2s ease;
+}
+
+.btn-custom-primary:hover {
+  background-color: #E00028 !important;
+  border-color: #E00028 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-custom-edit {
+  background-color: transparent !important;
+  border: 2px solid var(--primary-color) !important;
+  color: var(--primary-color) !important;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  transition: all 0.2s ease;
+}
+
+.btn-custom-edit:hover {
+  background-color: var(--primary-color) !important;
+  color: white !important;
+}
+
+.btn-custom-delete {
+  background-color: transparent !important;
+  border: 2px solid #222 !important;
+  color: #222 !important;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  transition: all 0.2s ease;
+}
+
+.btn-custom-delete:hover {
+  background-color: #222 !important;
+  color: white !important;
+}
+
+.btn-custom-outline {
+  background-color: transparent !important;
+  border-color: var(--primary-color) !important;
+  color: var(--primary-color) !important;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.btn-custom-outline:hover {
+  background-color: var(--primary-color) !important;
+  color: white !important;
+}
+
+/* --- Related Listings Card --- */
+.related-card-img-small {
+  max-height: 180px;
+  object-fit: cover;
+}
+
+.listing-card-hover {
+  transition: all 0.2s ease;
+}
+
+.listing-card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* --- Offcanvas Mobile Menu Styling --- */
+.offcanvas-body .navbar-nav .nav-link {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #222;
+  padding: 0.5rem 0.5rem;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+/* THIS IS THE CHANGE YOU ASKED FOR:
+  We replaced 'background-color' with 'box-shadow' and 'transform'.
+*/
+.offcanvas-body .navbar-nav .nav-link:hover {
+  color: var(--primary-color);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.offcanvas-body .btn-glass {
+  width: 100%;
+  text-align: center;
+}
+
+/* --- Footer --- */
+.f-info-links,
+.f-info-socials,
+.f-info-brand {
+  width: 100%;
+  vertical-align: middle;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.f-info-socials {
+  margin-right: 1rem;
+  font-size: 1.2rem;
+}
+
+.f-info-links a {
+  text-decoration: none;
+  color: #222222;
+}
+
+.f-info-links a:hover {
+  text-decoration: underline;
+}
+
+.f-info {
+  height: 8rem;
+  background-color: #ebebeb;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: space-evenly;
+  text-align: center;
 }

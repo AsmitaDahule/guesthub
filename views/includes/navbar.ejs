@@ -1,43 +1,78 @@
-<nav class="navbar navbar-expand-md bg-white border-bottom sticky-top">
+<nav class="navbar navbar-expand-md bg-white shadow-sm sticky-top">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/"><i class="fa-solid fa-compass"></i></a>
 
-    <!-- Navbar toggler button -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
-      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand navbar-brand-custom d-flex align-items-center" href="/">
+      <i class="fa-solid fa-compass me-2"></i>guestHub
+    </a>
+
+    <button class="navbar-toggler d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu"
+      aria-controls="mobileMenu" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <!-- Navbar content -->
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav me-auto">
+    <div class="d-none d-md-flex justify-content-between flex-grow-1">
+      
+      <ul class="navbar-nav mx-auto gap-3">
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="/">Home</a>
+          <a class="nav-link nav-link-custom" aria-current="page" href="/">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/listings">All Listings</a>
+          <a class="nav-link nav-link-custom" href="/listings">All Listings</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/listings/new">Add New Listing</a>
+          <a class="nav-link nav-link-custom" href="/listings/new">Add New Listing</a>
         </li>
       </ul>
 
-      <!-- Right-side links -->
-      <ul class="navbar-nav">
+      <ul class="navbar-nav d-flex flex-row align-items-center">
         <% if(!currUser) { %>
-          <li class="nav-item">
-          <a class="nav-link" href="/signup">Sign Up</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/login">Login</a>
-        </li>
+          <li class="nav-item ms-2"> <a class="btn-glass" href="/signup">Sign Up</a></li>
+          <li class="nav-item ms-2">
+            <a class="btn-glass btn-glass-primary" href="/login">Login</a>
+          </li>
+        <% } else { %>
+          <li class="nav-item ms-2">
+            <a class="btn-glass" href="/logout">Logout</a>
+          </li>
         <% } %>
-       <% if(currUser) { %>
-         <li class="nav-item">
-          <a class="nav-link" href="/logout">Logout</a>
-        </li>
-       <% } %>
       </ul>
     </div>
+
+  </div> </nav>
+
+<div class="offcanvas offcanvas-start d-md-none" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
+  
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title navbar-brand-custom" id="mobileMenuLabel">
+      <i class="fa-solid fa-compass me-2"></i>guestHub
+    </h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
-</nav>
+  
+  <div class="offcanvas-body">
+    <ul class="navbar-nav gap-2 mb-4">
+      <li class="nav-item">
+        <a class="nav-link" aria-current="page" href="/">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/listings">All Listings</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/listings/new">Add New Listing</a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav gap-3 border-top pt-4">
+      <% if(!currUser) { %>
+        <li class="nav-item"> <a class="btn-glass" href="/signup">Sign Up</a></li>
+        <li class="nav-item">
+          <a class="btn-glass btn-glass-primary" href="/login">Login</a>
+        </li>
+      <% } else { %>
+        <li class="nav-item">
+          <a class="btn-glass" href="/logout">Logout</a>
+        </li>
+      <% } %>
+    </ul>
+  </div>
+</div>

@@ -35,7 +35,11 @@ const listingSchema = new Schema({
       "Mountains",
       "Castles",
       "Amazing Pools",
-      "Arctic"
+      "Arctic",
+      "Domes",
+      "Camping",
+      "Farms",
+      "Boats"
     ]
   },
 });

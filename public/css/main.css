@@ -1,0 +1,30 @@
+/* /public/css/main.css */
+
+/*
+  These are the 3 directives Tailwind needs to work.
+  The CDN injects them, but if you install Tailwind locally,
+  you would put them here.
+*/
+/*
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+*/
+
+/* We can create our own reusable components here */
+@layer components {
+  /* Main "Call to Action" Button */
+  .btn-primary {
+    @apply w-full block text-center bg-primary text-white font-semibold py-3 px-6 rounded-lg shadow-md transition hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary-dark focus:ring-opacity-50;
+  }
+
+  /* Secondary Button */
+  .btn-secondary {
+    @apply w-full block text-center bg-white text-gray-800 border border-gray-800 font-semibold py-3 px-6 rounded-lg transition hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50;
+  }
+
+  /* Form Input Styling */
+  .form-input {
+    @apply block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary;
+  }
+}

@@ -35,6 +35,7 @@
       flex: 0 0 auto;
       opacity: 0.8;
       transition: all 0.3s ease;
+      text-decoration: none;
     }
 
     .filter:hover {
@@ -45,7 +46,7 @@
 
     .filter i {
       font-size: 1.8rem;
-      color: #ff5a5f;
+      color: #9a9292;
     }
 
     .filter p {
@@ -55,7 +56,8 @@
       color: #333;
     }
 
-    @media (min-width: 768px) {
+
+    @media (min-width: 900px) {
       #filters {
         flex-wrap: wrap;
         overflow-x: visible;
@@ -65,72 +67,89 @@
   </style>
 </head>
 
-<body>
 
-  <% if (selectedCategory) { %>
-  <h4>Showing results for "<%= selectedCategory %>"</h4>
-<% } %>
+<div class="container-fluid">
+  <div id="filters" class="px-3">
+    <a href="/listings/category/Trending" class="filter">
+      <i class="fa-solid fa-fire"></i>
+      <p>Trending</p>
+    </a>
+    <a href="/listings/category/Room" class="filter">
+      <i class="fa-solid fa-person-shelter"></i>
+      <p>Room</p>
+    </a>
+    <a href="/listings/category/Iconic Cities" class="filter">
+      <i class="fa-solid fa-city"></i>
+      <p>Iconic Cities</p>
+    </a>
+    <a href="/listings/category/Mountains" class="filter">
+      <i class="fa-solid fa-mountain"></i>
+      <p>Mountains</p>
+    </a>
+    <a href="/listings/category/Castles" class="filter">
+      <i class="fa-brands fa-fort-awesome"></i>
+      <p>Castles</p>
+    </a>
+    <a href="/listings/category/Amazing Pools" class="filter">
+      <i class="fa-solid fa-person-swimming"></i>
+      <p>Amazing Pools</p>
+    </a>
+    <a href="/listings/category/Arctic" class="filter">
+      <i class="fa-solid fa-snowflake"></i>
+      <p>Arctic</p>
+    </a>
+    <a href="/listings/category/Domes" class="filter">
+      <i class="fa-solid fa-igloo"></i>
+      <p>Domes</p>
+    </a>
+    <a href="/listings/category/Camping" class="filter">
+      <i class="fa-solid fa-campground"></i>
+      <p>Camping</p>
+    </a>
+     <a href="/listings/category/Farms" class="filter">
+      <i class="fa-solid fa-cow"></i>
+      <p>Farms</p>
+    </a>
+    <a href="/listings/category/Boats" class="filter">
+      <i class="fa-solid fa-ship"></i>
+      <p>Boats</p>
+    </a>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <% if (selectedCategory) { %>
+      <h3 class="mb-3">Showing results for "<%= selectedCategory %>"</h3>
+    <% } %>
+  </div>
+</div>
 
 <% if (allListings.length === 0) { %>
-  <p>No listings found in this category.</p>
-<% } else { %>
-  <!-- your normal listings cards go here -->
-<% } %>
-
-
-  <div class="container-fluid">
-    <div id="filters" class="px-3">
-      <a href="/listings/category/Trending" class="filter">
-          <i class="fa-solid fa-fire"></i>
-          <p>Trending</p>
-        </a>
-        <a href="/listings/category/Room" class="filter">
-          <i class="fa-solid fa-fire"></i>
-          <p>Room</p>
-        </a>
-        <a href="/listings/category/Iconic Cities" class="filter">
-          <i class="fa-solid fa-fire"></i>
-          <p>Iconic Cities</p>
-        </a>
-        <a href="/listings/category/Mountains" class="filter">
-          <i class="fa-solid fa-fire"></i>
-          <p>Mountains</p>
-        </a>
-        <a href="/listings/category/Castles" class="filter">
-          <i class="fa-solid fa-fire"></i>
-          <p>Castles</p>
-        </a>
-        <a href="/listings/category/Amazing Pools" class="filter">
-          <i class="fa-solid fa-fire"></i>
-          <p>Amazing Pools</p>
-        </a>
-        <a href="/listings/category/Arctic" class="filter">
-          <i class="fa-solid fa-fire"></i>
-          <p>Arctic</p>
-        </a>
+  <div class="row">
+    <div class="alert alert-warning col-12 col-md-8 offset-md-2 text-center" role="alert">
+      <h4 class="alert-heading">No Listings Found</h4>
+      <p>We couldn't find any listings for this category. Try a different one!</p>
     </div>
   </div>
-</body>
-</html>
-
-  
+<% } else { %>
   <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
     <% for(let listing of allListings) { %>
       <a href="/listings/<%= listing._id %>" class="listing-link" >
-    <div class="card col listing-card">
-          <img src="<%= listing.image.url %>"
-            class="card-img-top" alt="Listing Image" style="height: 20rem;" 
-            />
+        <div class="card col listing-card">
+            <img src="<%= listing.image.url %>"
+              class="card-img-top" alt="Listing Image" style="height: 20rem;" 
+              />
 
-          <div class="card-body">
-            <p class="card-text">
+            <div class="card-body">
+              <p class="card-text">
               <b><%= listing.title %></b>
-            <br>
-          &#8377; <%= listing.price.toLocaleString("en-IN") %> / night
-           </p>
-          </div>
+              <br>
+              &#8377; <%= listing.price.toLocaleString("en-IN") %> / night
+              </p>
+            </div>
         </div>
-        </a>
+      </a>
     <% } %>
   </div>
-
+<% } %>

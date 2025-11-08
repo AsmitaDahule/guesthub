@@ -11,6 +11,7 @@ const ejsMate = require('ejs-mate');
 const ExpressError = require("./utils/ExpressError.js");
 const expressSession = require("express-session");
 const session = require("express-session");
+const mongoStore = require("connect-mongo");
 const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
@@ -19,8 +20,9 @@ const User = require("./models/user.js");
 const listingRouter = require("./routes/listing.js");
 const reviewRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
+const MongoStore = require("connect-mongo");
 
-
+const Listing = require("./models/listing.js");
 
 main().then(() => {
   console.log("connected to db");
@@ -30,7 +32,7 @@ main().then(() => {
 
 async function main() {
   await mongoose.connect(process.env.MONGO_URL);
-}
+};
 
 
 app.set("view engine", "ejs");
@@ -41,9 +43,19 @@ app.engine('ejs', ejsMate);
 app.use(express.static(path.join(__dirname, "/public")));
 
 
+const store = MongoStore.create({
+  mongoUrl: process.env.MONGO_URL,
+  crypto: {
+    secret: "mysupersecretecode"
+  },
+  touchAfter: 24 * 3600,
+});
 
-
+store.on("error", () => {
+  console.log("error occur");
+});
 const sessionOptions = {
+  store,
   secret: "mysupersecrete",
   resave: false,
   saveUninitialized: true,
@@ -55,15 +67,6 @@ const sessionOptions = {
 };
 
 
-app.get("/", (req, res) => {
-  res.send("hi, i am from root")
-});
-
-
-// map 
-app.get("/map", (req, res) => {
-  res.render("map");  // renders map.ejs
-});
 
 
 
@@ -85,6 +88,24 @@ app.use((req, res, next)=> {
   res.locals.currUser = req.user;
   next();
 });
+
+
+app.get("/", async (req, res) => {
+  // Fetch all listings from the database
+  const allListings = await Listing.find({});
+  
+  // Now render "index" and pass the variables it needs
+  res.render("listings/index", { 
+    allListings: allListings,
+    selectedCategory: null // Pass null so the "if" check works
+  });
+});
+
+
+// map 
+// app.get("/map", (req, res) => {
+//   res.render("map");  // renders map.ejs
+// });
 
 
 
